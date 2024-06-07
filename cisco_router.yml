@@ -1,6 +1,6 @@
 ---
 - name: Ping Test Playbook
-  hosts: localhost
+  hosts: wsl
   gather_facts: no
   tasks:
     - name: Define a list of new hosts with their groups and credentials
