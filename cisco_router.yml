@@ -29,6 +29,7 @@
   tasks:
     - name: Ensure the target hosts are reachable
       ping:
+        dest: "{{ inventory_hostname }}"
 
     - name: Get facts from Cisco IOS devices
       cisco.ios.ios_facts:
