@@ -1,6 +1,6 @@
 ---
 - name: Ping Test Playbook
-  hosts: wsl
+  hosts: localhost
   gather_facts: no
   tasks:
     - name: Define a list of new hosts with their groups and credentials
@@ -23,6 +23,9 @@
     ansible_ssh_pass: "Saibaba@007"
     ansible_connection: ansible.netcommon.network_cli
     ansible_network_os: cisco.ios.ios
+  collections:
+    - ansible.netcommon
+    - cisco.ios
   tasks:
     - name: Ensure the target hosts are reachable
       ping:
