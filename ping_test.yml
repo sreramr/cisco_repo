@@ -1,0 +1,24 @@
+---
+- name: Ping Test Playbook
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Define a list of new hosts with their groups and credentials
+      set_fact:
+        new_hosts:
+          - hostname: 10.2.77.103
+            group: routers
+
+    - name: Add new hosts to inventory
+      add_host:
+        name: "{{ item.hostname }}"
+        groups: "{{ item.group }}"
+      loop: "{{ new_hosts }}"
+
+- name: Perform tasks on routers
+  hosts: routers
+  gather_facts: no
+  tasks:
+    - name: Ensure the target hosts are reachable
+      ping:
+        dest: "{{ inventory_hostname }}"
